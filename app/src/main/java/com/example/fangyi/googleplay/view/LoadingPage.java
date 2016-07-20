@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import com.example.fangyi.googleplay.R;
 import com.example.fangyi.googleplay.manager.ThreadManager;
-import com.example.fangyi.googleplay.utils.UIUtils;
+import com.example.fangyi.googleplay.utils.UiUtils;
 
 /**
  * 创建自定义帧布局，把BaseFragment一部分代码 抽取到这里
@@ -95,13 +95,13 @@ public abstract class LoadingPage extends FrameLayout {
 
     /* 创建了空的界面 */
     private View createEmptyView() {
-        View view = View.inflate(UIUtils.getContext(), R.layout.loadpage_empty, null);
+        View view = View.inflate(UiUtils.getContext(), R.layout.loadpage_empty, null);
         return view;
     }
 
     /* 创建了错误界面 */
     private View createErrorView() {
-        View view = View.inflate(UIUtils.getContext(), R.layout.loadpage_error, null);
+        View view = View.inflate(UiUtils.getContext(), R.layout.loadpage_error, null);
         Button page_bt = (Button) view.findViewById(R.id.page_bt);
         page_bt.setOnClickListener(new View.OnClickListener() {
 
@@ -116,7 +116,7 @@ public abstract class LoadingPage extends FrameLayout {
     /* 创建加载中的界面 */
     private View createLoadingView() {
         View view = View
-                .inflate(UIUtils.getContext(), R.layout.loadpage_loading, null);
+                .inflate(UiUtils.getContext(), R.layout.loadpage_loading, null);
         return view;
     }
 
@@ -151,7 +151,7 @@ public abstract class LoadingPage extends FrameLayout {
             public void run() {
                 SystemClock.sleep(2000);
                 final LoadResult result = load();
-                UIUtils.runOnUiThread(new Runnable() {
+                UiUtils.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {

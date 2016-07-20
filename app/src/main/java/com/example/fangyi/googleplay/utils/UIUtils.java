@@ -9,7 +9,7 @@ import com.example.fangyi.googleplay.base.BaseApplication;
  * Created by FANGYI on 2016/7/19.
  */
 
-public class UIUtils {
+public class UiUtils {
 
     /**
      * 上下文

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.fangyi.googleplay.base.BaseFragment;
+import com.example.fangyi.googleplay.protocol.HomeProtocol;
 import com.example.fangyi.googleplay.view.LoadingPage;
 
 /**
@@ -34,7 +35,8 @@ public class HomeFragment extends BaseFragment {
      * @return
      */
     protected LoadingPage.LoadResult load() {
-
+        HomeProtocol protocol = new HomeProtocol();
+        protocol.load(0);
         return LoadingPage.LoadResult.success;
     }
 }

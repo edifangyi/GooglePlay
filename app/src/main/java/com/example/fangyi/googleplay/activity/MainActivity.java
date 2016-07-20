@@ -18,7 +18,7 @@ import com.example.fangyi.googleplay.adapter.FragmentFactory;
 import com.example.fangyi.googleplay.adapter.VpContentAdapter;
 import com.example.fangyi.googleplay.base.BaseActivity;
 import com.example.fangyi.googleplay.base.BaseFragment;
-import com.example.fangyi.googleplay.utils.UIUtils;
+import com.example.fangyi.googleplay.utils.UiUtils;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,7 +26,6 @@ public class MainActivity extends BaseActivity
     private ViewPager vpContent;
     private PagerTabStrip pagerTabStrip;
     private String[] tabNames;//标签的名字
-    private static final int NOHTTP_WHAT_TEST = 0x001;
 
     /**
      * 初始化数据
@@ -34,11 +33,11 @@ public class MainActivity extends BaseActivity
     @Override
     protected void initData() {
         super.initData();
-        tabNames = UIUtils.getStringArray(R.array.tab_names);
+        tabNames = UiUtils.getStringArray(R.array.tab_names);
     }
 
     /**
-     * 初始化布局
+     * 初始化默认布局
      */
     @Override
     protected void initView() {
@@ -70,6 +69,9 @@ public class MainActivity extends BaseActivity
         assignViews();
     }
 
+    /**
+     * 初始化自定义布局
+     */
     private void assignViews() {
         vpContent = (ViewPager) findViewById(R.id.vp_content);
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
