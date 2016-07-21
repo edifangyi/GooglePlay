@@ -1,44 +1,73 @@
 package com.example.fangyi.googleplay.domain;
 
-/**
- * Created by FANGYI on 2016/7/20.
- */
+import java.util.List;
 
+/**
+ * @author Joey Huang（QQ:273179370）
+ * @created 2016/7/20
+ */
 public class AppInfo {
-    private Inner list;
-    public Inner getList() {
+    private List<Inner>list;
+    private List<String>picture;
+
+    public List<String> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(List<String> picture) {
+        this.picture = picture;
+    }
+
+    public List<Inner> getList() {
         return list;
     }
 
-    public void setList(Inner list) {
+    public void setList(List<Inner> list) {
         this.list = list;
     }
-    public class Inner {
-        /**
-         * id : 1525490
-         * name : 有缘网
-         * packageName : com.youyuan.yyhl
-         * iconUrl : app/com.youyuan.yyhl/icon.jpg
-         * stars : 4
-         * size : 3876203
-         * downloadUrl : app/com.youyuan.yyhl/com.youyuan.yyhl.apk
-         * des : 产品介绍：有缘是时下最受大众单身男女亲睐的婚恋交友软件。有缘网专注于通过轻松、
-         */
 
-        private int id;
+    /**
+     * id : 1525490
+     * name : 有缘网
+     * packageName : com.youyuan.yyhl
+     * iconUrl : app/com.youyuan.yyhl/icon.jpg
+     * stars : 4
+     * size : 3876203
+     * downloadUrl : app/com.youyuan.yyhl/com.youyuan.yyhl.apk
+     * des : 产品介绍：有缘是时下最受大众单身男女亲睐的婚恋交友软件。有缘网专注于通过轻松、
+     */
+
+    public class Inner {
+
+
+        private long id;
         private String name;
         private String packageName;
         private String iconUrl;
-        private int stars;
-        private int size;
+        private double stars;
+        private double size;
         private String downloadUrl;
         private String des;
 
-        public int getId() {
+        @Override
+        public String toString() {
+            return "Inner{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", packageName='" + packageName + '\'' +
+                    ", iconUrl='" + iconUrl + '\'' +
+                    ", stars=" + stars +
+                    ", size=" + size +
+                    ", downloadUrl='" + downloadUrl + '\'' +
+                    ", des='" + des + '\'' +
+                    '}';
+        }
+
+        public long getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(long id) {
             this.id = id;
         }
 
@@ -66,19 +95,19 @@ public class AppInfo {
             this.iconUrl = iconUrl;
         }
 
-        public int getStars() {
+        public double getStars() {
             return stars;
         }
 
-        public void setStars(int stars) {
+        public void setStars(double stars) {
             this.stars = stars;
         }
 
-        public int getSize() {
+        public double getSize() {
             return size;
         }
 
-        public void setSize(int size) {
+        public void setSize(double size) {
             this.size = size;
         }
 
@@ -97,5 +126,14 @@ public class AppInfo {
         public void setDes(String des) {
             this.des = des;
         }
+
+    }
+
+    @Override
+    public String toString() {
+        return "AppInfo{" +
+                "list=" + list +
+                ", picture=" + picture +
+                '}';
     }
 }

@@ -1,22 +1,14 @@
 package com.example.fangyi.googleplay.protocol;
 
-import com.example.fangyi.googleplay.domain.App;
-import com.example.fangyi.googleplay.domain.New;
+import com.example.fangyi.googleplay.domain.AppInfo;
 import com.example.fangyi.googleplay.utils.FileUtils;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.socks.library.KLog;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
-import com.yolanda.nohttp.rest.OnResponseListener;
 import com.yolanda.nohttp.rest.Request;
-import com.yolanda.nohttp.rest.RequestQueue;
 import com.yolanda.nohttp.rest.Response;
 import com.yolanda.nohttp.tools.IOUtils;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,9 +17,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.fangyi.googleplay.global.GlobalContants.CATEGORIES_URL;
 
@@ -37,22 +26,29 @@ import static com.example.fangyi.googleplay.global.GlobalContants.CATEGORIES_URL
 
 public class HomeProtocol {
 
-    public void load(int index) {
 
+    private AppInfo md;
+    private Request<String> request;
+    private Response<String> response;
 
-        loadServer(index);//请求服务器
-//
-//        //请求服务器
-//        String json = loadLocal(index);//读取缓存
-//
-//        if (json == null) {
-//            loadServer(index);//请求服务器
-//        }
-//
-//        if (json != null) {
-//            paserJson(json);//解析
-//        }
+    public AppInfo load(int index) {
+//        String json = loadServer(index);//请求服务器
 
+        //请求服务器
+        String json = loadLocal(index);//读取缓存
+        KLog.e("1 == " + json);
+
+        if (json == null) {
+            json = loadServer(index);//请求服务器
+        }
+
+        if (json != null) {
+            saveLocal(json, index);//保存为本地缓存
+            md = paserJson(json);//解析
+        }
+
+        KLog.e("7.最后的信息 ======= " + md);
+        return md;
     }
 
     /**
@@ -60,41 +56,12 @@ public class HomeProtocol {
      *
      * @param json
      */
-    private void paserJson(String json) {
-        List<New>mList;//结果
-        List<String>mPicture=new ArrayList<>();//结果
-
+    private AppInfo paserJson(String json) {
         Gson gson = new Gson();
-        try {
-            JSONObject object = new JSONObject(json);
-            //解析list
-            String list = object.getString("list");
-            Type type = new TypeToken<List<New>>() {
-            }.getType();
-            mList = gson.fromJson(list, type);
-            //解析picture
-            JSONArray picture = object.getJSONArray("picture");
-            int length = picture.length();
-            for (int i = 0; i < length; i++) {
-                mPicture.add(picture.getString(i));
-            }
-            for (String s : mPicture) {
-                KLog.e(s);
-            }
-            for (New n : mList) {
-                KLog.e(n.toString());
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        AppInfo getAppInfo = gson.fromJson(json, AppInfo.class);
+        return getAppInfo;
     }
 
-    private void paserJson2(String json) {
-        Gson gson = new Gson();
-        App md = gson.fromJson(json, App.class);
-        KLog.e("1 ==================== "+md);
-
-    }
 
     /**
      * 把数据保存到本地
@@ -119,7 +86,6 @@ public class HomeProtocol {
             bw.write(json);//把整个json文件保存起来
             bw.flush();
             bw.close();
-            KLog.e(2);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -135,11 +101,27 @@ public class HomeProtocol {
      * @param index
      * @return
      */
-    private void loadServer(int index) {
+    private String loadServer(int index) {
+
+        String getJson = null;
 
         String url = CATEGORIES_URL + index;
+        KLog.e(url);
 
-        getHttpRequest(url, index);//请求方式
+        // 创建请求对象
+        request = NoHttp.createStringRequest(url, RequestMethod.GET);
+        response = NoHttp.startRequestSync(request);
+        getJson = response.get();
+
+        KLog.e("3.getJson ====" + getJson);
+//        if (response.isSucceed()) {
+//            // 请求成功
+//            getJson = response.get();
+//            KLog.e("3.给json赋值，json ====" + getJson);
+//        } else {
+//            // 请求失败
+//        }
+        return getJson;
     }
 
     /**
@@ -176,57 +158,5 @@ public class HomeProtocol {
 
     /* 响应码 */
     private static final int NOHTTP_WHAT_TEST = 0x001;
-
-    /**
-     * 使用NoHttp请求网络
-     *
-     * @param url
-     * @param index
-     */
-    private void getHttpRequest(String url, final int index) {
-
-        RequestQueue requestQueue = NoHttp.newRequestQueue();
-        // 创建请求对象
-        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.GET);
-
-
-        requestQueue.add(NOHTTP_WHAT_TEST, request, new OnResponseListener<String>() {
-
-            @Override
-            public void onStart(int what) {
-
-            }
-
-            @Override
-            public void onSucceed(int what, Response<String> response) {
-                if (what == NOHTTP_WHAT_TEST) {
-                    // 请求成功
-                    // 响应结果
-                    String json = response.get();
-//
-//                    if (json != null) {
-//                        saveLocal(json, index);//保存为本地缓存
-//                    }
-
-                    if (json != null) {
-//                        paserJson(json);//解析
-                        paserJson2(json);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailed(int what, String url, Object tag, Exception exception, int responseCode, long networkMillis) {
-
-            }
-
-            @Override
-            public void onFinish(int what) {
-
-            }
-        });
-
-    }
 
 }

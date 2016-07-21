@@ -4,7 +4,7 @@ package com.example.fangyi.googleplay.domain;
  * @author Joey Huang（QQ:273179370）
  * @created 2016/7/20
  */
-public class New {
+public class AppInfo_2 {
 
 
     /**

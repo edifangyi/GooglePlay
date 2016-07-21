@@ -3,29 +3,12 @@ package com.example.fangyi.googleplay.domain;
 import java.util.List;
 
 /**
- * @author Joey Huang（QQ:273179370）
- * @created 2016/7/20
+ * Created by FANGYI on 2016/7/21.
  */
-public class App {
-    private List<Inner>list;
-    private List<String>picture;
 
-    public List<String> getPicture() {
-        return picture;
-    }
+public class Applnfo_3 {
 
-    public void setPicture(List<String> picture) {
-        this.picture = picture;
-    }
-
-    public List<Inner> getList() {
-        return list;
-    }
-
-    public void setList(List<Inner> list) {
-        this.list = list;
-    }
-
+    private List<String> picture;
     /**
      * id : 1525490
      * name : 有缘网
@@ -37,25 +20,33 @@ public class App {
      * des : 产品介绍：有缘是时下最受大众单身男女亲睐的婚恋交友软件。有缘网专注于通过轻松、
      */
 
-    public class Inner {
+    private List<ListBean> list;
 
+    public List<String> getPicture() {
+        return picture;
+    }
 
+    public void setPicture(List<String> picture) {
+        this.picture = picture;
+    }
+
+    public List<ListBean> getList() {
+        return list;
+    }
+
+    public void setList(List<ListBean> list) {
+        this.list = list;
+    }
+
+    public static class ListBean {
         private long id;
         private String name;
         private String packageName;
         private String iconUrl;
-        private double stars;
-        private double size;
+        private float stars;
+        private long size;
         private String downloadUrl;
         private String des;
-
-        @Override
-        public String toString() {
-            return "New{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    '}';
-        }
 
         public long getId() {
             return id;
@@ -89,19 +80,19 @@ public class App {
             this.iconUrl = iconUrl;
         }
 
-        public double getStars() {
+        public float getStars() {
             return stars;
         }
 
-        public void setStars(double stars) {
+        public void setStars(float stars) {
             this.stars = stars;
         }
 
-        public double getSize() {
+        public long getSize() {
             return size;
         }
 
-        public void setSize(double size) {
+        public void setSize(long size) {
             this.size = size;
         }
 
@@ -121,13 +112,26 @@ public class App {
             this.des = des;
         }
 
+        @Override
+        public String toString() {
+            return "ListBean{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", packageName='" + packageName + '\'' +
+                    ", iconUrl='" + iconUrl + '\'' +
+                    ", stars=" + stars +
+                    ", size=" + size +
+                    ", downloadUrl='" + downloadUrl + '\'' +
+                    ", des='" + des + '\'' +
+                    '}';
+        }
     }
 
     @Override
     public String toString() {
-        return "App{" +
-                "list=" + list +
-                ", picture=" + picture +
+        return "NewC{" +
+                "picture=" + picture +
+                ", list=" + list +
                 '}';
     }
 }

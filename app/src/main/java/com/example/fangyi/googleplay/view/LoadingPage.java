@@ -1,7 +1,6 @@
 package com.example.fangyi.googleplay.view;
 
 import android.content.Context;
-import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,7 +148,6 @@ public abstract class LoadingPage extends FrameLayout {
 
             @Override
             public void run() {
-                SystemClock.sleep(2000);
                 final LoadResult result = load();
                 UiUtils.runOnUiThread(new Runnable() {
 
