@@ -17,10 +17,10 @@ import java.util.Map;
 
 public class FragmentFactory {
 
-    private static Map<Integer, BaseFragment> mFragments = new HashMap<>();
+    private static Map<Integer, BaseFragment> mFragments = new HashMap<Integer, BaseFragment>();
 
     public static BaseFragment createFragment(int position) {
-        BaseFragment fragment = null;
+        BaseFragment fragment;
         fragment = mFragments.get(position);  //在集合中取出来Fragment
         if (fragment == null) {  //如果再集合中没有取出来 需要重新创建
             if (position == 0) {
@@ -43,6 +43,4 @@ public class FragmentFactory {
         return fragment;
 
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.example.fangyi.googleplay.view;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,12 +80,12 @@ public abstract class LoadingPage extends FrameLayout {
                     : View.INVISIBLE);
         }
         if (state == STATE_SUCCESS) {
-            successView = createSuccessView();
-            if (successView != null) {
+            if (successView == null) {
+                successView = createSuccessView();
                 this.addView(successView, new FrameLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                successView.setVisibility(View.VISIBLE);
             }
+            successView.setVisibility(View.VISIBLE);
         } else {
             if (successView != null) {
                 successView.setVisibility(View.INVISIBLE);
@@ -148,6 +149,7 @@ public abstract class LoadingPage extends FrameLayout {
 
             @Override
             public void run() {
+                SystemClock.sleep(2000);
                 final LoadResult result = load();
                 UiUtils.runOnUiThread(new Runnable() {
 

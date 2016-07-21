@@ -14,10 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.fangyi.googleplay.R;
-import com.example.fangyi.googleplay.adapter.FragmentFactory;
 import com.example.fangyi.googleplay.adapter.VpContentAdapter;
 import com.example.fangyi.googleplay.base.BaseActivity;
-import com.example.fangyi.googleplay.base.BaseFragment;
 import com.example.fangyi.googleplay.utils.UiUtils;
 
 public class MainActivity extends BaseActivity
@@ -77,17 +75,20 @@ public class MainActivity extends BaseActivity
         pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
 
         pagerTabStrip.setTabIndicatorColorResource(R.color.colorIndicator);//设置下划线颜色
+
+//        vpContent.setOffscreenPageLimit(6);
         vpContent.setAdapter(new VpContentAdapter(getSupportFragmentManager(), tabNames));
 
 //        sendBroadcast(new Intent("com.fangyi.googleplay.killall"));//发送广播。实现退出
-        vpContent.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                BaseFragment baseFragment = FragmentFactory.createFragment(position);
-                baseFragment.show();
-            }
-        });
+
+//        vpContent.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                super.onPageSelected(position);
+//                BaseFragment baseFragment = FragmentFactory.createFragment(position);
+//                baseFragment.show();
+//            }
+//        });
     }
 
     @Override

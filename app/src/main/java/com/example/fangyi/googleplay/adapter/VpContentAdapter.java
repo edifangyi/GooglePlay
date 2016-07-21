@@ -20,7 +20,21 @@ public class VpContentAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         //通过Fragment工厂，生成Fragment
-
+//        if (position == 0) {
+//            return new HomeFragment();
+//        } else if (position == 1) {
+//            return new AppFragment();
+//        } else if (position == 2) {
+//            return new GameFragment();
+//        } else if (position == 3) {
+//            return new SubjectFragment();
+//        } else if (position == 4) {
+//            return new CategoryFragment();
+//        } else if (position == 5) {
+//            return new TopFragment();
+//        } else {
+//            return null;
+//        }
         return FragmentFactory.createFragment(position);
     }
 

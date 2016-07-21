@@ -18,6 +18,6 @@ public class TopFragment extends BaseFragment {
 
     @Override
     protected LoadingPage.LoadResult load() {
-        return LoadingPage.LoadResult.error;
+        return LoadingPage.LoadResult.success;
     }
 }

@@ -21,7 +21,8 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (loadingPage == null) {  // 之前的frameLayout 已经记录了一个爹了  爹是之前的ViewPager
-            loadingPage = new LoadingPage(getActivity()) {
+            loadingPage = new LoadingPage(getActivity()){
+
                 @Override
                 public View createSuccessView() {
                     return BaseFragment.this.createSuccessView();
@@ -32,19 +33,12 @@ public abstract class BaseFragment extends Fragment {
                     return BaseFragment.this.load();
                 }
             };
-        } else {
+        }else{
             ViewUtils.removeParent(loadingPage);// 移除frameLayout之前的爹
         }
-//        show();// 根据服务器的数据 切换状态
-        //  先干掉之前的爹
 
         return loadingPage;  //  拿到当前viewPager 添加这个framelayout
     }
-
-
-
-
-
 
     /**
      * 创建成功的界面
