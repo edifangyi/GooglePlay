@@ -10,6 +10,7 @@ import com.example.fangyi.googleplay.adapter.XRVHomeAdapter;
 import com.example.fangyi.googleplay.base.BaseFragment;
 import com.example.fangyi.googleplay.domain.AppInfo;
 import com.example.fangyi.googleplay.protocol.HomeProtocol;
+import com.example.fangyi.googleplay.utils.UiUtils;
 import com.example.fangyi.googleplay.view.LoadingPage;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.socks.library.KLog;
@@ -41,13 +42,13 @@ public class HomeFragment extends BaseFragment {
      * @return
      */
     public View createSuccessView() {
-        View view = View.inflate(getActivity(), R.layout.fragment_home, null);
+        View view = View.inflate(UiUtils.getContext(), R.layout.fragment_home, null);
         ButterKnife.bind(this, view);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         xrvHome.setLayoutManager(layoutManager);
-        xrvHome.setAdapter(new XRVHomeAdapter(datas,getActivity()));
+        xrvHome.setAdapter(new XRVHomeAdapter(datas,getContext()));
 
         return view;
     }

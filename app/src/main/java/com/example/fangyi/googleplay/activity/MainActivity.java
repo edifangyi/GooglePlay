@@ -1,7 +1,5 @@
 package com.example.fangyi.googleplay.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -10,7 +8,6 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,10 +16,11 @@ import android.view.View;
 import com.example.fangyi.googleplay.R;
 import com.example.fangyi.googleplay.adapter.FragmentFactory;
 import com.example.fangyi.googleplay.adapter.VpContentAdapter;
+import com.example.fangyi.googleplay.base.BaseActivity;
 import com.example.fangyi.googleplay.base.BaseFragment;
 import com.example.fangyi.googleplay.utils.UiUtils;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
@@ -31,18 +29,10 @@ public class MainActivity extends AppCompatActivity
     private String[] tabNames;//标签的名字
 
 
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        initData();
-        initView();
-    }
-
-
     /**
      * 初始化数据
      */
-    private void initData() {
+    protected void initData() {
 
         tabNames = UiUtils.getStringArray(R.array.tab_names);
     }
@@ -50,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * 初始化默认布局
      */
-    private void initView() {
+    protected void initView() {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
