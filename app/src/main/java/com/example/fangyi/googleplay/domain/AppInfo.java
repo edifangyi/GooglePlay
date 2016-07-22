@@ -44,8 +44,8 @@ public class AppInfo {
         private String name;
         private String packageName;
         private String iconUrl;
-        private double stars;
-        private double size;
+        private float stars;
+        private float size;
         private String downloadUrl;
         private String des;
 
@@ -95,19 +95,19 @@ public class AppInfo {
             this.iconUrl = iconUrl;
         }
 
-        public double getStars() {
+        public float getStars() {
             return stars;
         }
 
-        public void setStars(double stars) {
+        public void setStars(float stars) {
             this.stars = stars;
         }
 
-        public double getSize() {
+        public float getSize() {
             return size;
         }
 
-        public void setSize(double size) {
+        public void setSize(float size) {
             this.size = size;
         }
 
@@ -126,7 +126,6 @@ public class AppInfo {
         public void setDes(String des) {
             this.des = des;
         }
-
     }
 
     @Override

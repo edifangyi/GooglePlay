@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.example.fangyi.googleplay.R;
-import com.example.fangyi.googleplay.adapter.HomeAdapter;
+import com.example.fangyi.googleplay.adapter.XRVHomeAdapter;
 import com.example.fangyi.googleplay.base.BaseFragment;
 import com.example.fangyi.googleplay.domain.AppInfo;
 import com.example.fangyi.googleplay.protocol.HomeProtocol;
@@ -44,16 +44,16 @@ public class HomeFragment extends BaseFragment {
         View view = View.inflate(getActivity(), R.layout.fragment_home, null);
         ButterKnife.bind(this, view);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         xrvHome.setLayoutManager(layoutManager);
-        xrvHome.setAdapter(new HomeAdapter(datas, getContext()));
+        xrvHome.setAdapter(new XRVHomeAdapter(datas,getActivity()));
 
         return view;
     }
 
     /**
-     * 服务器返回的状态码
+     * 服务器数据
      *
      * @return
      */
@@ -61,6 +61,7 @@ public class HomeFragment extends BaseFragment {
         HomeProtocol protocol = new HomeProtocol();
 
         datas = protocol.load(0);
+
         return checkData(datas);
     }
 

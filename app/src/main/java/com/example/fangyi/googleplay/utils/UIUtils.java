@@ -11,14 +11,14 @@ import com.example.fangyi.googleplay.base.BaseApplication;
 
 public class UiUtils {
 
-    /**
-     * 上下文
-     * @return
-     */
     private static Resources getResources() {
         return BaseApplication.getApplication().getResources();
     }
 
+    /**
+     * 上下文
+     * @return
+     */
     public static Context getContext() {
         return BaseApplication.getApplication();
     }
