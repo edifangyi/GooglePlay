@@ -33,7 +33,6 @@ public class HomeFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         show();
-
     }
 
     /**
@@ -66,13 +65,14 @@ public class HomeFragment extends BaseFragment {
         return checkData(datas);
     }
 
+
     /**
      * 校验
      *
      * @param load
      * @return
      */
-    private LoadingPage.LoadResult checkData(AppInfo load) {
+    public LoadingPage.LoadResult checkData(AppInfo load) {
         if (load == null) {
             KLog.e("8.请求方式 == error ");
             return LoadingPage.LoadResult.error;//服务器请求失败

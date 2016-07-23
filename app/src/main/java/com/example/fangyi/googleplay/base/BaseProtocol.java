@@ -60,8 +60,8 @@ public abstract class BaseProtocol<T> {
     private T paserJson(String json) {
         Gson gson = new Gson();
 //        AppInfo getAppInfo = gson.fromJson(json, AppInfo.class);
-        T getAppInfo = gson.fromJson(json, entityClass);
-        return getAppInfo;
+        T getJson = gson.fromJson(json, entityClass);
+        return getJson;
     }
 
     /**

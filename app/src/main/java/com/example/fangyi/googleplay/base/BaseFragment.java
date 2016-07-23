@@ -55,14 +55,10 @@ public abstract class BaseFragment extends Fragment {
     protected abstract LoadingPage.LoadResult load();
 
 
-
-
-
     public void show() {
         if (loadingPage != null) {
             loadingPage.show();
         }
     }
-
 
 }
