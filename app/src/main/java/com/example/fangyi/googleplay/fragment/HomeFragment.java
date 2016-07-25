@@ -13,7 +13,8 @@ import com.example.fangyi.googleplay.protocol.HomeProtocol;
 import com.example.fangyi.googleplay.utils.UiUtils;
 import com.example.fangyi.googleplay.view.LoadingPage;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.socks.library.KLog;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,31 +62,7 @@ public class HomeFragment extends BaseFragment {
         HomeProtocol protocol = new HomeProtocol();
 
         datas = protocol.load(0);
-
-        return checkData(datas);
+        List<AppInfo.Inner> inners = datas.getList();
+        return checkData(inners);
     }
-
-
-    /**
-     * 校验
-     *
-     * @param load
-     * @return
-     */
-    public LoadingPage.LoadResult checkData(AppInfo load) {
-        if (load == null) {
-            KLog.e("8.请求方式 == error ");
-            return LoadingPage.LoadResult.error;//服务器请求失败
-        } else {
-            if (load.getList().size() == 0) {
-                KLog.e("8.请求方式 == empty ");
-                return LoadingPage.LoadResult.empty;//请求为空
-            } else {
-                KLog.e("8.请求方式 == success ");
-                return LoadingPage.LoadResult.success;//请求成功
-            }
-
-        }
-    }
-
 }

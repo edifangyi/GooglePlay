@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import com.example.fangyi.googleplay.utils.ViewUtils;
 import com.example.fangyi.googleplay.view.LoadingPage;
+import com.socks.library.KLog;
+
+import java.util.List;
 
 /**
  * Created by FANGYI on 2016/7/19.
@@ -58,6 +61,29 @@ public abstract class BaseFragment extends Fragment {
     public void show() {
         if (loadingPage != null) {
             loadingPage.show();
+        }
+    }
+
+
+    /**
+     * 校验
+     *
+     * @param datas
+     * @return
+     */
+    public LoadingPage.LoadResult checkData(List datas) {
+        if (datas == null) {
+            KLog.e("8.请求方式 == error ");
+            return LoadingPage.LoadResult.error;//服务器请求失败
+        } else {
+            if (datas.size() == 0) {
+                KLog.e("8.请求方式 == empty ");
+                return LoadingPage.LoadResult.empty;//请求为空
+            } else {
+                KLog.e("8.请求方式 == success ");
+                return LoadingPage.LoadResult.success;//请求成功
+            }
+
         }
     }
 

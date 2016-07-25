@@ -11,7 +11,8 @@ import com.example.fangyi.googleplay.protocol.SubjectProtocol;
 import com.example.fangyi.googleplay.utils.UiUtils;
 import com.example.fangyi.googleplay.view.LoadingPage;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.socks.library.KLog;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,30 +51,9 @@ public class SubjectFragment extends BaseFragment {
         SubjectProtocol protocol = new SubjectProtocol();
 
         datas = protocol.load(0);
-        KLog.e(datas);
-        return checkData(datas);
+        List<SubjectInfo.ListBean> listBeen = datas.getList();
+        return checkData(listBeen);
     }
 
-    /**
-     * 校验
-     *
-     * @param load
-     * @return
-     */
-    public LoadingPage.LoadResult checkData(SubjectInfo load) {
-        if (load == null) {
-            KLog.e("8.请求方式 == error ");
-            return LoadingPage.LoadResult.error;//服务器请求失败
-        } else {
-            if (load.getList().size() == 0) {
-                KLog.e("8.请求方式 == empty ");
-                return LoadingPage.LoadResult.empty;//请求为空
-            } else {
-                KLog.e("8.请求方式 == success ");
-                return LoadingPage.LoadResult.success;//请求成功
-            }
-
-        }
-    }
 
 }
